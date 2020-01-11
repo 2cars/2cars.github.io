@@ -75,11 +75,11 @@ document.onkeydown = function(e) {
 }
 
 document.ontouchstart = function(e) {
-	if (e.touches[0].clientX <= canvas.width / 2) {
+	if (e.touches[e.targetTouches.length - 1].clientX <= canvas.width / 2) {
 		player.left.dx *= -1;
 	}
 
-	if (e.touches[0].clientX >= canvas.width / 2) {
+	if (e.touches[e.targetTouches.length - 1].clientX >= canvas.width / 2) {
 		player.right.dx *= -1;
 	}
 }
