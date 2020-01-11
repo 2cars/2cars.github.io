@@ -16,7 +16,8 @@ var player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerS
 
 var spawnTimer = -30;
 var spawnSpeed = 5;
-var blockSpeed = 10;
+var startBlockSpeed = 10;
+var blockSpeed = startBlockSpeed;
 var blockAcceleration = 0.01;
 var blocks = [];
 
@@ -44,6 +45,8 @@ function frame() {
 
 function reset() {
 	spawnTimer = -30;
+	blockSpeed = startBlockSpeed;
+	score = 0;
 	player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerSpeed}, right: {x: lanes[3], y: canvas.height - laneWidth / 3, dx: playerSpeed}};
 	blocks = [];
 }
@@ -52,6 +55,7 @@ function reset() {
 function collision() {
 	for (var i = 0; i < blocks.length; ++i) {
 		if (Math.hypot(blocks[i].x - player.left.x, blocks[i].y - player.left.y) < laneWidth/3 || Math.hypot(blocks[i].x - player.right.x, blocks[i].y - player.right.y) < laneWidth/3) {
+			alert("Your score is: " + score);
 			reset();
 		}
 	}
