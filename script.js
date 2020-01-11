@@ -26,8 +26,8 @@ var paused = false;
 function frame() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	document.getElementById("speed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
-	document.getElementById("score").innerHTML = "Score: " + score;
+	//document.getElementById("speed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
+	//document.getElementById("score").innerHTML = "Score: " + score;
 
 	collision();
 
@@ -67,7 +67,7 @@ document.onkeydown = function(e) {
 	}
 }
 
-canvas.ontouchstart = function(e) {
+document.ontouchstart = function(e) {
 	if (e.touches[0].clientX <= canvas.width / 2) {
 		player.left.dx *= -1;
 	}
