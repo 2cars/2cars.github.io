@@ -11,11 +11,6 @@ var lines = [laneStartPos, laneStartPos + laneWidth, laneStartPos + laneWidth * 
 var lanes = [laneStartPos + laneWidth / 2, laneStartPos + laneWidth / 2 * 3, laneStartPos + laneWidth / 2 * 5, laneStartPos + laneWidth / 2 * 7];
 var linePattern = [{color: "white", width: 5}, {color: "gray", width: 5}, {color: "white", width: 10}, {color: "gray", width: 5}, {color: "white", width: 5}];
 
-var overlayText = document.getElementsByClassName("overlayText");
-for (var i = 0; i < overlayText.length; ++i) {
-	overlayText[i].style.fontSize = (laneWidth / 8) + "px";
-}
-
 var playerSpeed = laneWidth / 5;
 var player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerSpeed}, right: {x: lanes[3], y: canvas.height - laneWidth / 3, dx: playerSpeed}};
 
@@ -33,8 +28,8 @@ var paused = false;
 function frame() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	document.getElementById("speed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
-	document.getElementById("score").innerHTML = "Score: " + score;
+	document.getElementById("overlaySpeed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
+	document.getElementById("overlayScore").innerHTML = "Score: " + score;
 
 	collision();
 
@@ -45,7 +40,7 @@ function frame() {
 
 	draw();
 	
-	requestAnimationFrame(frame);
+	if (!paused) requestAnimationFrame(frame);
 }
 
 
@@ -57,11 +52,20 @@ function reset() {
 	blocks = [];
 }
 
+function restart() {
+	document.getElementById("menu").style.display = "none";
+	paused = false;
+	frame();
+}
+
 
 function collision() {
 	for (var i = 0; i < blocks.length; ++i) {
 		if (Math.hypot(blocks[i].x - player.left.x, blocks[i].y - player.left.y) < laneWidth/3 || Math.hypot(blocks[i].x - player.right.x, blocks[i].y - player.right.y) < laneWidth/3) {
-			//alert("Your score is: " + score);
+			paused = true;
+			document.getElementById("menuSpeed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
+			document.getElementById("menuScore").innerHTML = "Score: " + score;
+			document.getElementById("menu").style.display = "block";
 			reset();
 		}
 	}
@@ -69,28 +73,41 @@ function collision() {
 
 
 document.onkeydown = function(e) {
-	if(e.keyCode == 65) {  // a
-		player.left.dx = -playerSpeed;
-	}
-	if(e.keyCode == 68) {  // d
-		player.left.dx = playerSpeed;	
+	if(e.keyCode == 32) {  // k
+		if (paused) {
+			restart();
+		}
+		else {
+			paused = true;
+		}
 	}
 
-	if(e.keyCode == 74) {  // j
-		player.right.dx = -playerSpeed;
-	}
-	if(e.keyCode == 76) {  // k
-		player.right.dx = playerSpeed;
+	if (!paused) {
+		if(e.keyCode == 65) {  // a
+			player.left.dx = -playerSpeed;
+		}
+		if(e.keyCode == 68) {  // d
+			player.left.dx = playerSpeed;	
+		}
+
+		if(e.keyCode == 74) {  // j
+			player.right.dx = -playerSpeed;
+		}
+		if(e.keyCode == 76) {  // k
+			player.right.dx = playerSpeed;
+		}
 	}
 }
 
 document.ontouchstart = function(e) {
-	if (e.touches[e.targetTouches.length - 1].clientX <= canvas.width / 2) {
-		player.left.dx *= -1;
-	}
+	if (!paused) {
+		if (e.touches[e.targetTouches.length - 1].clientX <= canvas.width / 2) {
+			player.left.dx *= -1;
+		}
 
-	if (e.touches[e.targetTouches.length - 1].clientX >= canvas.width / 2) {
-		player.right.dx *= -1;
+		if (e.touches[e.targetTouches.length - 1].clientX >= canvas.width / 2) {
+			player.right.dx *= -1;
+		}
 	}
 }
 

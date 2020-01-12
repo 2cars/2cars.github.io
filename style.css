@@ -16,31 +16,70 @@ body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	opacity: 75%;
 	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 6vmin;
 	z-index: 2;
 
 	display: none;
 }
 
+.line {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	border-left: 5px solid white;
+}
+
+#leftLine {
+	left: calc(calc(50vw - 50vmin) - 2.5px);
+}
+
+#rightLine {
+	right: calc(calc(50vw - 50vmin) - 2.5px);
+}
+
+#menuTop {
+	position: absolute;
+	width: 50vmin;
+	bottom: calc(50vh + 25vmin);
+	left: calc(50vw - 25vmin);
+}
+
+#playButton {
+	position: absolute;
+	width: 50vmin;
+	height: 50vmin;
+	top: calc(50vh - 25vmin);
+	left: calc(50vw - 25vmin)
+}
+
+#menuBottom {
+	position: absolute;
+	width: 50vmin;
+	top: calc(50vh + 25vmin);
+	left: calc(50vw - 25vmin);
+}
+
 #overlay {
 	position: absolute;
-	width: min(100vw, 100vh);
+	width: 100vmin;
 	height: 100%;
-	left: calc(50vw - min(50vw, 50vh));
+	left: calc(50vw - 50vmin);
 	z-index: 1;
 }
 
 .overlayText {
 	position: absolute;
 	background-color: white;
-	font-size: 10px;
+	font-size: 3vmin;
 }
 
-#speed {
+#overlaySpeed {
 	left: 0;
 }
 
-#score {
+#overlayScore {
 	right: 0;
 }

@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Car</title>
+		<title>2 Cars</title>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1, maximum-scale = 1, user-scalable = 0"/>
 	</head>
 	<body>
 		<div id = "menu">
-			
+			<div class = "line" id = "leftLine"></div>
+			<div id = "menuTop">
+				<font class = "menuText" id = "menuSpeed">Speed: -</font><br>
+				<font class = "menuText" id = "menuScore">Score: -</font>
+			</div>
+			<img id = "playButton" src = "play.png" onclick = "restart()" />
+			<div id = "menuBottom">
+				<font class = "menuText" id = "startSpeed">Starting speed: -</font><br>
+				<font class = "menuText" id = "acceleration">Acceleration: -</font>
+				<font class = "menuText" id = "maxSpeed">Max speed: -</font>
+			</div>
+			<div class = "line" id = "rightLine"></div>
 		</div>
 
 		<div id = "overlay">
-			<font class = "overlayText" id = "speed"></font>
-			<font class = "overlayText" id = "score"></font>
+			<font class = "overlayText" id = "overlaySpeed">Speed: -</font>
+			<font class = "overlayText" id = "overlayScore">Score: -</font>
 		</div>
 
 		<canvas id = "canvas"></canvas>
