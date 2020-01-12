@@ -11,14 +11,19 @@ var lines = [laneStartPos, laneStartPos + laneWidth, laneStartPos + laneWidth * 
 var lanes = [laneStartPos + laneWidth / 2, laneStartPos + laneWidth / 2 * 3, laneStartPos + laneWidth / 2 * 5, laneStartPos + laneWidth / 2 * 7];
 var linePattern = [{color: "white", width: 5}, {color: "gray", width: 5}, {color: "white", width: 10}, {color: "gray", width: 5}, {color: "white", width: 5}];
 
+var overlayText = document.getElementsByClassName("overlayText");
+for (var i = 0; i < overlayText.length; ++i) {
+	overlayText[i].style.fontSize = (laneWidth / 8) + "px";
+}
+
 var playerSpeed = laneWidth / 5;
 var player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerSpeed}, right: {x: lanes[3], y: canvas.height - laneWidth / 3, dx: playerSpeed}};
 
 var spawnTimer = -30;
 var spawnSpeed = 5;
-var startBlockSpeed = 10;
+var startBlockSpeed = 25;
 var blockSpeed = startBlockSpeed;
-var blockAcceleration = 0.005;
+var blockAcceleration = 0;
 var blocks = [];
 
 var score = 0;
@@ -27,8 +32,8 @@ var paused = false;
 function frame() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	//document.getElementById("speed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
-	//document.getElementById("score").innerHTML = "Score: " + score;
+	document.getElementById("speed").innerHTML = "Speed: " + blockSpeed.toFixed(2);
+	document.getElementById("score").innerHTML = "Score: " + score;
 
 	collision();
 
