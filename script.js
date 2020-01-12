@@ -16,10 +16,10 @@ var player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerS
 
 var spawnTimer = -30;
 var spawnSpeed = 5;
-var startBlockSpeed = 15;
-var blockSpeed = startBlockSpeed;
-var blockAcceleration = 0.005;
-var blockSpeedLimit = 25;
+var blockStartSpeed = 15;
+var blockSpeed = blockStartSpeed;
+var blockAcceleration = 5;
+var blockMaxSpeed = 25;
 var blocks = [];
 
 var score = 0;
@@ -46,16 +46,25 @@ function frame() {
 
 function reset() {
 	spawnTimer = -30;
-	blockSpeed = startBlockSpeed;
+	blockSpeed = blockStartSpeed;
 	score = 0;
 	player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerSpeed}, right: {x: lanes[3], y: canvas.height - laneWidth / 3, dx: playerSpeed}};
 	blocks = [];
 }
 
 function restart() {
+	set('blockStartSpeed');
+	set('blockAcceleration');
+	set('blockMaxSpeed');
+	blockSpeed = blockStartSpeed;
 	document.getElementById("menu").style.display = "none";
 	paused = false;
 	frame();
+}
+
+
+function set(variable){
+	window[variable] = Number(document.getElementById(variable).value);
 }
 
 
@@ -158,7 +167,8 @@ function moveBlocks() {
 		}
 	}
 
-	blockSpeed += blockAcceleration;
+	blockSpeed += blockAcceleration/1000;
+	if (blockSpeed > blockMaxSpeed) blockSpeed = blockMaxSpeed;
 }
 
 function drawBlocks() {

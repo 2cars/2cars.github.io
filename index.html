@@ -14,9 +14,9 @@
 			</div>
 			<img id = "playButton" src = "play.png" onclick = "restart()" />
 			<div id = "menuBottom">
-				<font class = "menuText" id = "startSpeed">Starting speed: -</font><br>
-				<font class = "menuText" id = "acceleration">Acceleration: -</font>
-				<font class = "menuText" id = "maxSpeed">Max speed: -</font>
+				Starting speed: <input type="number" value="15" id="blockStartSpeed" onblur="set('blockStartSpeed')">
+		        Acceleration: <input type="number" value="5" id="blockAcceleration" onblur="set('blockAcceleration')">
+		        Max speed: <input type="number" value="25" id="blockMaxSpeed" onblur="set('blockMaxSpeed')">
 			</div>
 			<div class = "line" id = "rightLine"></div>
 		</div>
