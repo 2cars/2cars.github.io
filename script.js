@@ -21,9 +21,10 @@ var player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerS
 
 var spawnTimer = -30;
 var spawnSpeed = 5;
-var startBlockSpeed = 20;
+var startBlockSpeed = 15;
 var blockSpeed = startBlockSpeed;
-var blockAcceleration = 0;
+var blockAcceleration = 0.005;
+var blockSpeedLimit = 25;
 var blocks = [];
 
 var score = 0;
