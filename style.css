@@ -21,8 +21,7 @@ body{
 	text-align: center;
 	font-size: 6vmin;
 	z-index: 2;
-
-	display: none;
+	display: block;
 }
 
 .line {

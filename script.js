@@ -15,6 +15,7 @@ var playerSpeed = laneWidth / 5;
 var player = {left: {x: lanes[0], y: canvas.height - laneWidth / 3, dx: -playerSpeed}, right: {x: lanes[3], y: canvas.height - laneWidth / 3, dx: playerSpeed}};
 
 var spawnTimer = -30;
+var spawnSide = -1;
 var spawnSpeed = 5;
 var blockStartSpeed = 15;
 var blockSpeed = blockStartSpeed;
@@ -23,7 +24,7 @@ var blockMaxSpeed = 25;
 var blocks = [];
 
 var score = 0;
-var paused = false;
+var paused = true;
 
 function frame() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -146,13 +147,11 @@ function drawPlayer() {
 function spawnBlocks() {
 	++spawnTimer;
 
-	if (spawnTimer == Math.round((60/(blockSpeed/spawnSpeed))/2)) {
-		blocks.push({x: lanes[Math.floor(Math.random()*2)], y: -laneWidth/6});
-	}
-	else if (spawnTimer >= Math.round(60/(blockSpeed/spawnSpeed))) {
-		blocks.push({x: lanes[Math.floor(Math.random()*2)+2], y: -laneWidth/6});
+	if (spawnTimer >= Math.round(30/(blockSpeed/spawnSpeed))) {
+		blocks.push({x: lanes[Math.floor(Math.random()*2) + (spawnSide + 1)], y: -laneWidth/6});
 
 		spawnTimer = 0;
+		spawnSide *= -1;
 	}
 }
 
