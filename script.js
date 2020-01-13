@@ -1,8 +1,10 @@
 if ("serviceWorker" in navigator) {
-	window.addEventListener("load", function() {
+  	window.addEventListener("load", function() {
     	navigator.serviceWorker.register("app/sw.js").then(function(registration) {
-    		
-    	}
+      
+    	}, function(err) {
+      
+    	});
   	});
 }
 
