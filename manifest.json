@@ -4,5 +4,12 @@
   "display": "standalone",
   "start_url": "https://2cars.github.io/index.html",
   "theme_color": "#000000",
-  "background_color": "#000000"
+  "background_color": "#000000",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    }
+  ]
 }
