@@ -1,3 +1,11 @@
+if ("serviceWorker" in navigator) {
+	window.addEventListener("load", function() {
+    	navigator.serviceWorker.register("app/sw.js").then(function(registration) {
+    		
+    	}
+  	});
+}
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 canvas.setAttribute("width", window.innerWidth);
