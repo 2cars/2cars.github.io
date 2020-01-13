@@ -1,1 +1,1 @@
-navigator.serviceWorker && navigator.serviceWorker.register("sw.js").then(function(registration) { });
+navigator.serviceWorker && navigator.serviceWorker.register("app/sw.js").then(function(registration) { });
