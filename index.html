@@ -6,7 +6,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1, maximum-scale = 1, user-scalable = 0"/>
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="theme-color" content="#000000">
-		<link rel="manifest" href="/manifest.json">
+		<link rel="manifest" href="app/manifest.json">
 	</head>
 	<body>
 		<div id = "menu">
@@ -15,7 +15,7 @@
 				<font class = "menuText" id = "menuSpeed">Speed: -</font><br>
 				<font class = "menuText" id = "menuScore">Score: -</font>
 			</div>
-			<img id = "playButton" src = "play.png" onclick = "restart()" />
+			<img id = "playButton" src = "icons/play.png" onclick = "restart()" />
 			<div id = "menuBottom">
 				Starting speed: <input type="number" value="15" id="blockStartSpeed" onblur="set('blockStartSpeed')">
 		        Acceleration: <input type="number" value="5" id="blockAcceleration" onblur="set('blockAcceleration')">
@@ -32,6 +32,6 @@
 		<canvas id = "canvas"></canvas>
 
 		<script src = "script.js"></script>
-		<script src = "site.js"></script>
+		<script src = "app/site.js"></script>
 	</body>
 </html>
