@@ -85,13 +85,13 @@ body{
 }
 
 
-input[type=number]{
+input[type=number] {
+	width: 5vmin;
+    height: 3vmin;
     border: 1px solid white;
+    outline: none;
     background-color: black;
     color: white;
-    outline: none;
-    width: 5vmin;
-    height: 3vmin;
     font-size: 3vmin;
 }
 input[type=number]::-webkit-inner-spin-button, 
